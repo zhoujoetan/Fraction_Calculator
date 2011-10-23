@@ -1,0 +1,39 @@
+1. The Fraction API
+
+Use Test Driven Design.
+
+Write similar methods for add, subtract, and divide. Also write a method absValue to return the absolute value of a fraction, and negate to change the sign of a fraction. All of these methods should return a newly created Fraction, not change any existing Fraction.
+
+Improve the __str__ method so that, when given a Fraction whose denominator is 1, just returns the numerator (as a string).
+
+2. The text interface
+
+Write separate modules (files) named FractionCalculatorTest and FractionCalculator. The code described in this section goes in these modules, not in Fraction or FractionTest.
+
+When the program first starts, the value in the calculator should be zero.
+
+Accept lines of input from the user. Each line will contain some mixture of numbers and operators, separated by spaces (You can use split() to turn this string into a list.) For example,
+
+    3/4 + 1/-3 * 7 / 5
+Here's what to do for each input item:
+
+When you see	Do this
++	Remember (in some variable) that you need to do an addition.	For each of these, if there is already an operation being remembered, raise a ValueError.
+-	Remember (in some variable) that you need to do a subtraction.
+*	Remember (in some variable) that you need to do a multiplication.
+/	Remember (in some variable) that you need to do a division. (You can tell a division operator from part of a fraction because the / is all by itself.)
+a or A or abs or...	(An a or A or any word beginning with these) Take the absolute value of the fraction currently held by the calculator.
+n or N or neg or...	(An n or N or any word beginning with these) Change the sign of the fraction currently held by the calculator.
+c or C or clear or...	(A c or A or any word beginning with these) Set the value held by the calculator to zero.
+A fraction	
+If you have a remembered operation (+, -, *, or /), perform the operation, with the value currently in the calculator as the first operand, and the fraction as the second operand. The result becomes the new value in the calculator. "Forget" the operation, since you have now used it.
+
+A whole number	Treat this as a Fraction whose denominator is 1.
+q or Q or quit or...	(A q or Q or any word beginning with these) Raise an EOFError.
+Anything else	Stop processing any remaining input, set the value in the calculator to zero, and raise a ValueError.
+Extended example: Some changes have been made after I realized that there was no good way to "remember" an operation across lines.
+
+After this input:		1/2	-	3/4	*	abs	\n	8	7/8	neg	+
+Value in calculator is	0/1	1/2	1/2	-1/4	-1/4	1/4	1/4	2/1 8	7/8	-7/8	-7/8
+Remembered operation is	None	None	-	None	*	*	* None	None	None	None	+
+
